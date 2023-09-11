@@ -1,0 +1,52 @@
+[
+	{
+		"tittle": "Sanguche Mixto",
+		"description": "Sanguche de jamon y queso, con mayo",
+		"code": "C5454",
+		"price": 750,
+		"status": "true",
+		"stock": 35,
+		"category": "Sanguches",
+		"id": 0
+	},
+	{
+		"tittle": "Sanguche Completo",
+		"description": "Con jamon, queso, lechuga, tomate, con mayo",
+		"code": "C5453",
+		"price": 800,
+		"status": "true",
+		"stock": 30,
+		"category": "Sanguches",
+		"id": 1
+	},
+	{
+		"tittle": "Sanguche Hamburguesa",
+		"description": "Sola, con mayo",
+		"code": "C873",
+		"price": 950,
+		"status": true,
+		"stock": 22,
+		"category": "Sanguches",
+		"id": 2
+	},
+	{
+		"tittle": "Milanga Completa",
+		"description": "Mila, lechuga, tomate, Huevo Frito",
+		"code": "C45573",
+		"price": 1400,
+		"status": true,
+		"stock": 14,
+		"category": "Delicatessen",
+		"id": 3
+	},
+	{
+		"id": 4,
+		"tittle": "Ravioles",
+		"description": "de pollo y verdura",
+		"code": "i8g",
+		"price": 1050,
+		"status": false,
+		"stock": 32,
+		"category": "pastas"
+	}
+]

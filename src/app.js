@@ -5,8 +5,14 @@ import {Server} from "socket.io"
 import cartRouter from "./routes/cartRouter.js"
 import productRouter from "./routes/productRouter.js"
 
+import viewsRouter from "./routes/viewsRouter.js"
+
 const app = express() //instancio la aplicación
 const httpServer = app.listen(8080, () => console.log("Servidor escuchando en 8080"))
+app.engine("handlebars", handlebars.engine())
+app.set("views", "./src/views")
+app.set("view engine", "handlebars")
+app.use(express.static("./src/public"))
 app.use(express.json()) // middleware para procesar solicitudes y leer json
 app.use(express.urlencoded({ extended: true}))
 
@@ -15,6 +21,7 @@ app.use(express.urlencoded({ extended: true}))
 //const productManager = new ProductManager(); // Instancio la clase
 //const cartManager = new CartManager(); // Instancio la clase
 
+app.use("/", viewsRouter)
 
 app.use("/api/products", productRouter) // Indico que para la ruta PRODUCT, voy a usar todos los EndPoints del router correspondiente
 

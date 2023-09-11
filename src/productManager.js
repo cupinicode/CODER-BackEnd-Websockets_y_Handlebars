@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { json } from 'express';
 import fs from 'fs';
 
@@ -13,15 +14,17 @@ class ProductManager {
         const productsText = await fs.promises.readFile(this.path, 'utf-8')
         const products = JSON.parse(productsText)
 
-        if (!tittle || !description || !code || !price || !status
-            || !stock || !category)
+        if (!newProduct.tittle || !newProduct.description || !newProduct.code || !newProduct.price || 
+            !newProduct.stock || !newProduct.category)
             return 401;
         if (products.find((product) => product.code === newProduct.code))
-            return "error";
+            return 401;
         const id = products.reduce((idFinal, product) => product.id > idFinal ? product.id : idFinal, 0)
 
         const product = { id : id + 1, ...newProduct } //Desestructuro newProduct
-        await fs.promises.writeFile(this.path, JSON.stringify(product, null, "\t"))
+        product.status = false
+        products.push(product)
+        await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"))
         return 200
     }
 
@@ -56,11 +59,10 @@ class ProductManager {
         const productsText = await fs.promises.readFile(this.path, 'utf-8')
         const products = JSON.parse(productsText)
         const indiceEncontrado = products.findIndex((producto) => producto.id === productId);
-        //delete products[indiceEncontrado]
-
         if (indiceEncontrado === -1) {
             return 404;
         } else {
+            //delete products[indiceEncontrado] Equivalente a splice
             this.products.splice(indiceEncontrado, 1); //Elimino 1 (un) elemento del array, comenzando por indiceEncontrado
             await fs.promises.writeFile(this.path, JSON.stringify(products, null, "\t"))
             return 200

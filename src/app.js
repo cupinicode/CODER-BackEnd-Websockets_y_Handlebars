@@ -1,9 +1,12 @@
 import express, { urlencoded } from "express";
+import handlebars from "express-handlebars"
+import {Server} from "socket.io"
 
 import cartRouter from "./routes/cartRouter.js"
 import productRouter from "./routes/productRouter.js"
 
 const app = express() //instancio la aplicación
+const httpServer = app.listen(8080, () => console.log("Servidor escuchando en 8080"))
 app.use(express.json()) // middleware para procesar solicitudes y leer json
 app.use(express.urlencoded({ extended: true}))
 
@@ -17,7 +20,6 @@ app.use("/api/products", productRouter) // Indico que para la ruta PRODUCT, voy 
 
 app.use("/api/carts", cartRouter) // Indico que para la ruta CART, voy a usar todos los EndPoints del router correspondiente
 
-app.listen(8080, () => console.log("Servidor escuchando en 8080"))
 
 
 
@@ -49,7 +51,7 @@ app.get('/api/products', async (req, res) => {
 app.get('/api/products/:pid', async (req, res) => {
     try {
     const productId = parseInt(req.params.pid);
-    const product = productManager.getProductById(productId);
+    const product = await productManager.getProductById(productId);
 
     if (product) {
         res.json(product);

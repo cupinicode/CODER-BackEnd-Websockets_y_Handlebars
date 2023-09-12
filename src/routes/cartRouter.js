@@ -11,7 +11,7 @@ const cartManager = new CartManager(); // Instancio la clase
 // para evitar agregar productos inexistentes a los carritos
 
 import ProductManager from "../productManager.js";
-const productManager = new ProductManager(); // Instancio la clase ProductManager, para verificar IDs de productos
+const productManager = new ProductManager("./products.json"); // Instancio la clase ProductManager, para verificar IDs de productos
 
 const router = Router() //Creo un router, instanciando el módulo
 

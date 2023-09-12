@@ -6,8 +6,8 @@ class ProductManager {
 
     path;
 
-    constructor() {
-        this.path = "./products.json";
+    constructor(ruta) {
+        this.path = ruta;
     }
 
     async addProduct(newProduct) {

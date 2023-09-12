@@ -48,5 +48,25 @@
 		"status": false,
 		"stock": 32,
 		"category": "pastas"
+	},
+	{
+		"id": 5,
+		"tittle": "Sorrentinos",
+		"description": "de jamon y muzzarella",
+		"code": "i8sddg",
+		"price": 1250,
+		"status": false,
+		"stock": 24,
+		"category": "pastas"
+	},
+	{
+		"id": 6,
+		"tittle": "Ñoquis",
+		"description": "de papa",
+		"code": "i8s44g",
+		"price": 1250,
+		"status": false,
+		"stock": 24,
+		"category": "pastas"
 	}
 ]

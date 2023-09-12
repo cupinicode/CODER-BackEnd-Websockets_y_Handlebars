@@ -1,7 +1,7 @@
 import { Router } from "express"; // Importamos el módulo ROUTER de express
 //import { uploader } from "../middlewares/multer.js";
 import ProductManager from "../productManager.js";
-const productManager = new ProductManager(); // Instancio la clase
+const productManager = new ProductManager("./products.json"); // Instancio la clase
 
 const router = Router() //Creo un router, instanciando el módulo
 
@@ -23,7 +23,10 @@ router.get('/:pid', async (req, res) => {  //endpoint que devuelve sólo el Id i
 
 router.post("/", async (req, res) => { //Agrego un producto
     const producto = req.body
-    res.status(await productManager.addProduct(producto)).send() //Tomo el valor de retorno de addProduct como STATUS
+    await productManager.addProduct(producto)
+    const products = await productManager.getProducts()
+    req.context.socketServer.emit("actualizar_productos", products)
+    res.status(200).send() //Tomo el valor de retorno de addProduct como STATUS
 })
 
 router.put('/:pid', async (req, res) => {  //endpoint que actualiza el Id indicado
